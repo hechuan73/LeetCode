@@ -5,9 +5,9 @@ import java.util.*;
 public class ThreeSum_15 {
     /**
      * PS: straightly solve.
-     *     1. O(n2) -> ok; O(n3) -> failed
-     *     2. result list need to sort by ASC.
-     *     3. line 36, the "while" loop is to reduce the process times, so it is less than O(n3).
+     * 1. O(n2) -> ok; O(n3) -> failed
+     * 2. result list need to sort by ASC.
+     * 3. line 36, the "while" loop is to reduce the process times, so it is less than O(n3).
      *
      * @param nums input array
      * @return the result list
@@ -19,7 +19,7 @@ public class ThreeSum_15 {
         Arrays.sort(nums);
 
         for (int i = 0; i < nums.length - 2; i++) {
-            if (i > 0 && nums[i] == nums[i-1]) {
+            if (i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
 
@@ -34,18 +34,16 @@ public class ThreeSum_15 {
                     result.add(nums[start]);
                     result.add(nums[end]);
                     results.add(result);
-                    while (start < end && nums[start] == nums[start+1]) {
+                    while (start < end && nums[start] == nums[start + 1]) {
                         start++;
                     }
-                    while (start < end && nums[end] == nums[end-1]) {
+                    while (start < end && nums[end] == nums[end - 1]) {
                         end--;
                     }
                     start++;
-                }
-                else if (target < 0) {
+                } else if (target < 0) {
                     start++;
-                }
-                else {
+                } else {
                     end--;
                 }
             }
