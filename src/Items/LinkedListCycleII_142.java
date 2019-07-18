@@ -1,6 +1,6 @@
 package Items;
 
-public class LinkedListCycle_142 {
+public class LinkedListCycleII_142 {
 
     /**
      * 方法主要分为两个阶段：
