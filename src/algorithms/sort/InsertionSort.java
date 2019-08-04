@@ -11,6 +11,7 @@ public class InsertionSort {
      * 平均时间复杂度：O(n2)
      *
      * 空间复杂度：O(1)
+     * 稳定排序
      *
      * @param a input array
      */

@@ -10,6 +10,7 @@ public class SelectionSort {
      * 平均时间复杂度：O(n2)
      *
      * 空间复杂度：O(1)
+     * 不稳定排序
      *
      * @param a input array
      */
