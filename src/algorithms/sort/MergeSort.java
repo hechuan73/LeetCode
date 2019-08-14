@@ -14,7 +14,7 @@ public class MergeSort {
      * 最坏时间复杂度：O(nlogn)
      * 平均时间复杂度：O(nlogn)
      *
-     * 空间复杂度：O(n)  归并排序不是一个稳定排序
+     * 空间复杂度：O(n)
      * 稳定排序
      *
      * @param a input array

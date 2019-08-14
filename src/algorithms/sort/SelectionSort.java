@@ -16,13 +16,12 @@ public class SelectionSort {
      */
     public static void selectionSort(int[] a) {
 
-        if (a.length <= 1) return;
+        if (a.length <= 1) { return; }
 
         for (int i = 0; i < a.length-1; i++) {
             int min = i;
             for (int j = i+1; j < a.length; j++) {
-                if (a[j] < a[min])
-                    min = j;
+                if (a[j] < a[min]) { min = j; }
             }
 
             if (min != i) {
