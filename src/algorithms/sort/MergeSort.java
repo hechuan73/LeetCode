@@ -22,12 +22,13 @@ public class MergeSort {
      * @param end the end index of sort
      */
     public static void mergeSort(int[] a, int begin, int end) {
-        if (begin >= end) return;
+        if (begin >= end) { return; }
 
         int mid = (begin+end)/2;
         mergeSort(a, begin, mid);
         mergeSort(a, mid+1, end);
-        merge(a, begin, mid, end);
+        //merge(a, begin, mid, end);
+        mergeWithPlaceHolder(a, begin, mid, end);
     }
 
     private static void merge(int[] a, int begin, int mid, int end) {
@@ -36,8 +37,8 @@ public class MergeSort {
 
          // merge data to array tmp
          while (i <= mid && j <= end) {
-             if (a[i] <= a[j]) tmp[k++] = a[i++];
-             else tmp[k++] = a[j++];
+             if (a[i] <= a[j]) { tmp[k++] = a[i++]; }
+             else { tmp[k++] = a[j++]; }
          }
 
          // check if there is remain data in the two parts a[begin, mid] and a[mid+1, end]
@@ -48,8 +49,30 @@ public class MergeSort {
          }
 
          // copy the remain data to tmp
-         while (start <= stop) tmp[k++] = a[start++];
+         while (start <= stop) { tmp[k++] = a[start++];}
          // copy data from array tmp to array a.
-         if (tmp.length >= 0) System.arraycopy(tmp, 0, a, begin, tmp.length);
+         if (tmp.length >= 0) {System.arraycopy(tmp, 0, a, begin, tmp.length);}
+    }
+
+    private static void mergeWithPlaceHolder(int[] a, int begin, int mid, int end) {
+
+        // last element is placeholder
+        int[] left = new int[mid-begin+2];
+        // last element is placeholder
+        int[] right = new int[end-mid+1];
+
+        System.arraycopy(a, begin, left, 0, mid-begin+1);
+        System.arraycopy(a, mid+1, right, 0, end-mid);
+
+        // add two placeholders
+        left[mid-begin+1] = Integer.MAX_VALUE;
+        right[end-mid] = Integer.MAX_VALUE;
+
+        int i = 0, j = 0, k = begin;
+        // merge data to array a
+        while (k <= end) {
+            if (left[i] <= right[j]) { a[k++] = left[i++]; }
+            else { a[k++] = right[j++]; }
+        }
     }
 }

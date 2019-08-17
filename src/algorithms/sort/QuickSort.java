@@ -22,7 +22,7 @@ public class QuickSort {
      * @param end the end index of sort
      */
     public static void quickSort(int[] a, int begin, int end) {
-        if (begin >= end) return;
+        if (begin >= end) { return;}
 
         int pivot = partition(a, begin, end);
         quickSort(a, begin, pivot-1);
