@@ -9,6 +9,8 @@ public class NextGreaterElementI_496 {
     /**
      * General solution for the next greater elements problems using monotone stake.
      *
+     * Note: if the stack stores the index instead of value, we can traverse rightly to reduce operations.
+     *
      * @param nums input array
      * @return the next greater elements array
      */
