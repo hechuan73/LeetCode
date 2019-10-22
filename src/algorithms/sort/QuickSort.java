@@ -1,5 +1,10 @@
 package algorithms.sort;
 
+import items.ListNode;
+
+/**
+ * @author hechuan
+ */
 public class QuickSort {
 
     /**
@@ -21,7 +26,7 @@ public class QuickSort {
      * @param begin the begin index of sort
      * @param end the end index of sort
      */
-    public static void quickSort(int[] a, int begin, int end) {
+    public void quickSort(int[] a, int begin, int end) {
         if (begin >= end) { return;}
 
         int pivot = partition(a, begin, end);
@@ -38,7 +43,7 @@ public class QuickSort {
      * @param end the end index of sort
      * @return the pivot index
      */
-    private static int partition(int[] a, int begin, int end) {
+    private int partition(int[] a, int begin, int end) {
         int index = begin;
         for (int i = begin; i <= end - 1; i++) {
             if (a[i] < a[end]) {
@@ -52,5 +57,53 @@ public class QuickSort {
         a[index] = a[end];
         a[end] = tmp;
         return index;
+    }
+
+    /**
+     * Recursive QuickSort for list.
+     *
+     * @param head input list
+     * @return the sorted list
+     */
+    public static ListNode quickSortListWithRecursive(ListNode head) {
+        return sortWithList(head, null);
+    }
+
+    private static ListNode sortWithList(ListNode head, ListNode tail) {
+        ListNode smallerFakeHead = new ListNode(0);
+        // regard the first node as pivot.
+        ListNode pivot = head;
+        smallerFakeHead.next = pivot;
+        if (head != tail) {
+            ListNode smallerPrev = smallerFakeHead;
+            ListNode biggerPrev = pivot;
+            ListNode smallerNext, biggerNext;
+            // swap all elements.
+            while (head != null) {
+                if (head.val < pivot.val) {
+                    smallerNext = smallerPrev.next;
+                    biggerNext = head.next;
+                    smallerPrev.next = head;
+                    head.next = smallerNext;
+                    smallerPrev = smallerPrev.next;
+                    biggerPrev.next = biggerNext;
+                    head = biggerNext;
+                }
+                else {
+                    biggerPrev = head;
+                    head = head.next;
+                }
+            }
+
+            // connect the smaller elements with pivot.
+            smallerPrev.next = pivot;
+
+            // sort the bigger elements.
+            pivot.next = sortWithList(pivot.next, tail);
+            // sort the smaller elements.
+            pivot = sortWithList(smallerFakeHead.next, pivot);
+        }
+
+        return pivot;
     }
 }
