@@ -66,9 +66,9 @@ public class PathSumIII_437 {
         if (root == null) { return 0; }
 
         pathSum += root.val;
-        int res = map.getOrDefault(sum-pathSum, 0);
+        int res = map.getOrDefault(pathSum-sum, 0);
         map.put(pathSum, map.getOrDefault(pathSum, 0) + 1);
-        res = dfs(root.left, sum, pathSum, map) + dfs(root.right, sum, pathSum, map);
+        res += dfs(root.left, sum, pathSum, map) + dfs(root.right, sum, pathSum, map);
         map.put(pathSum, map.get(pathSum) - 1);
 
         return res;
