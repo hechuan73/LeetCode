@@ -12,7 +12,7 @@ public class MaximumDepthOfNAryTree_559 {
      * DFS.
      *
      * @param root the root of the N_Ary tree
-     * @return
+     * @return the max depth
      */
     public int maxDepth1(Node root) {
         return dfs(root, 1, 0);
@@ -30,7 +30,7 @@ public class MaximumDepthOfNAryTree_559 {
      * BFS.
      *
      * @param root the root of the N_Ary tree
-     * @return
+     * @return the max depth
      */
     public int maxDepth(Node root) {
         int res = 0;
