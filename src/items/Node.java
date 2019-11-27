@@ -3,7 +3,7 @@ package items;
 import java.util.List;
 
 /**
- * Definition for a Node.
+ * Definition for a Node of N_Ary tree.
  *
  * @author hechuan
  */
