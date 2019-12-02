@@ -7,9 +7,9 @@ public class TrieNode {
 
     public TrieNode[] children;
     public boolean isEnding;
-    public int charsetSize = 26;
 
     public TrieNode() {
+        int charsetSize = 26;
         children = new TrieNode[charsetSize];
     }
 }

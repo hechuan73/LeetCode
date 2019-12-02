@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class CombinationSumII_40 {
-    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
-        // to avoid duplicate number
+/**
+ * @author hechuan
+ */
+public class CombinationSum_39 {
+
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
         Arrays.sort(candidates);
         List<List<Integer>> res = new ArrayList<>();
         backTracing(res, new ArrayList<>(), candidates, target, 0);
@@ -14,17 +17,12 @@ public class CombinationSumII_40 {
     }
 
     private void backTracing(List<List<Integer>> res, List<Integer> comb, int[] candidates, int target, int begin) {
-        if (target == 0) {
-            res.add(new ArrayList<>(comb));
-            return;
-        }
+        if (target == 0) { res.add(new ArrayList<>(comb)); }
 
         for (int i = begin; i < candidates.length; i++) {
-            // to avoid duplicate number
-            if (i > begin && candidates[i] == candidates[i-1]) {continue;}
             if (candidates[i] <= target) {
                 comb.add(candidates[i]);
-                backTracing(res, comb, candidates, target-candidates[i], i+1);
+                backTracing(res, comb, candidates, target-candidates[i], i);
                 comb.remove(comb.size()-1);
             }
             else { break; }
