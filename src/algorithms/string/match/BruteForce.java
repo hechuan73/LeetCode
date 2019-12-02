@@ -8,6 +8,8 @@ public class BruteForce {
     /**
      * Brute force to match.
      *
+     * 算法是单模式串匹配算法。
+     *
      * Time Complexity: O(m*n)
      * Space Complexity: O(1)
      *
