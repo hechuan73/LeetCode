@@ -11,6 +11,8 @@ public class SubSequence {
      * 1. root = "abpcplea", str = "apple" -> true;
      * 2. root = "abpcplea", str = "monkey" -> false;
      *
+     * "More details and follow-up question, see the file 'IsSubsequence_392' "
+     *
      * @param str string to check
      * @param root root string
      * @return whether the string is a subsequence of the root string.
