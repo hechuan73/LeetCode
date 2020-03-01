@@ -14,11 +14,11 @@ public class RankTeamsByVotes_1366 {
         Map<Character, int[]> map = new HashMap<>();
         char cha;
         int length = votes[0].length();
-        for (int i = 0; i < votes.length; i++) {
-            for (int j = 0; i < length; i++) {
-                cha = votes[i].charAt(j);
+        for (String vote : votes) {
+            for (int i = 0; i < length; i++) {
+                cha = vote.charAt(i);
                 map.putIfAbsent(cha, new int[length]);
-                map.get(cha)[j]++;
+                map.get(cha)[i]++;
             }
         }
 
