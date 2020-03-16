@@ -9,11 +9,26 @@ import java.util.Map;
  */
 public class LinkedListInBinaryTree_1367 {
 
+    /**
+     * Simple recursive solution.
+     *
+     * @param head the head of the linked list
+     * @param root the root of the tree
+     * @return whether there is a path of the linked list in the tree.
+     */
     public boolean isSubPath(ListNode head, TreeNode root) {
+        if (head == null) { return true; }
+        if (root == null) { return false; }
+
+        return check(root, head) || isSubPath(head, root.left) || isSubPath(head, root.right);
+    }
+
+
+    public boolean isSubPath2(ListNode head, TreeNode root) {
         Map<Integer, ArrayList<TreeNode>> map = new HashMap<>();
         traversal(root, map);
 
-        ArrayList<TreeNode> nodes = null;
+        ArrayList<TreeNode> nodes;
         if ((nodes = map.get(head.val)) == null || nodes.isEmpty()) { return false; }
 
         ListNode target;
@@ -44,5 +59,7 @@ public class LinkedListInBinaryTree_1367 {
         if (root.val == head.val) { return check(root.left, head.next) || check(root.right, head.next); }
         return false;
     }
+
+
 
 }
