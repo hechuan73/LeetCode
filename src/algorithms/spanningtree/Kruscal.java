@@ -45,21 +45,23 @@ public class Kruscal {
     private static int kruscal(int[] nodes, List<Edge> edges) {
         edges.sort(Comparator.comparingInt(o -> o.weight));
 
-        int minimumWeightSum = 0, count = 0;
+        int spanningTreeWeightSum = 0, count = 0;
         for (Edge edge : edges) {
             if (merge(edge.v1, edge.v2, nodes)) {
-                minimumWeightSum += edge.weight;
+                spanningTreeWeightSum += edge.weight;
                 count++;
             }
             // nodes.length = n+1, n is the number of vertexes, the minimum spanning tree has n-1 edges.
             if (count == nodes.length-2) { break; }
         }
 
-        return minimumWeightSum;
+        return spanningTreeWeightSum;
     }
 
     private static int getAncestor(int v, int[] nodes) {
-        return nodes[v] == v ? v : getAncestor(nodes[v], nodes);
+        if (nodes[v] == v) { return v; }
+        int ancestor = getAncestor(nodes[v], nodes);
+        return nodes[v] = ancestor;
     }
 
     private static boolean merge(int v1, int v2, int[] nodes) {

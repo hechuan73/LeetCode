@@ -50,7 +50,7 @@ public class Prim {
 
     private static int prim(int[][] map, boolean[] visited) {
         // default start point is vertex 1.
-        int start = 1, minimumWeightSum = 0;
+        int start = 1, spanningPathWeightSum = 0;
         // the minimum dist from the vertexes collection to a vertex which is not in the collection.
         // at the first, the collection only has one vertex which is the start vertex.
         int[] dist = new int[visited.length];
@@ -73,7 +73,7 @@ public class Prim {
             }
 
             // add it to the spanning tree.
-            minimumWeightSum += minDist;
+            spanningPathWeightSum += minDist;
             // set it  visited
             visited[next] = true;
             // update the distance from the collection to a vertex which is not in the collection.
@@ -84,7 +84,7 @@ public class Prim {
             }
         }
 
-        return minimumWeightSum;
+        return spanningPathWeightSum;
     }
 
     /**
@@ -115,12 +115,12 @@ public class Prim {
     private static int primWithHeap(Graph graph, boolean[] visited) {
         PriorityQueue<int[]> heap = new PriorityQueue<>(Comparator.comparingInt(o -> o[1]));
         int[] dist = new int[graph.vertexNum+1];
-        Arrays.fill(dist,Integer.MAX_VALUE);
+        Arrays.fill(dist, Integer.MAX_VALUE);
         // start from vertex 1.
         dist[1] = 0;
         // arr[0] -> destination vertex, arr[1] -> weight
         heap.offer(new int[]{1, 0});
-        int minimumWeightSum = 0;
+        int spanningTreePathWeightSum = 0;
         int[] curr;
         int des, weight;
         while (!heap.isEmpty()) {
@@ -129,7 +129,7 @@ public class Prim {
             // of current node is out of date.
             if (curr[1] > dist[curr[0]]) { continue; }
             visited[curr[0]] = true;
-            minimumWeightSum += curr[1];
+            spanningTreePathWeightSum += curr[1];
             // update the distance from collection to a vertex which is not in the collection.
             for (int i = 0; i < graph.adjList[curr[0]].size(); i++) {
                 des = graph.adjList[curr[0]].get(i).v2;
@@ -144,7 +144,7 @@ public class Prim {
 
         }
 
-        return minimumWeightSum;
+        return spanningTreePathWeightSum;
     }
 
     public static class Edge {
