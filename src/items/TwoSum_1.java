@@ -1,7 +1,6 @@
 package items;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author hechuan
@@ -34,6 +33,31 @@ public class TwoSum_1 {
                 return res;
             }
             map.put(nums[i], i);
+        }
+
+        return res;
+    }
+
+    public static List<List<Integer>> twoSum3(int[] arr, int target) {
+        if (arr == null || arr.length == 0) { return Collections.EMPTY_LIST; }
+
+        List<List<Integer>> res = new ArrayList<>();
+        Arrays.sort(arr);
+
+        int start = 0, end = arr.length-1;
+        List<Integer> tmp;
+        int sum;
+        while (start < end) {
+            tmp = new ArrayList<>(2);
+            sum = arr[start] + arr[end];
+            if (sum == target) {
+                tmp.add(arr[start]);
+                tmp.add(arr[end]);
+                res.add(tmp);
+                break;
+            }
+            else if (sum < target) { start++; }
+            else { end--; }
         }
 
         return res;
