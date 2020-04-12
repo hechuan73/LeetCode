@@ -5,7 +5,7 @@ package items;
  */
 public class LowestCommonAncestorOfaBinaryTree_236 {
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+    public TreeNode lowestCommonAncestor1(TreeNode root, TreeNode p, TreeNode q) {
         return helper(root, p, q);
     }
 
@@ -26,5 +26,16 @@ public class LowestCommonAncestorOfaBinaryTree_236 {
         if (dfs(root.left, p, q) > 0) { return 1; }
         if (dfs(root.right, p, q) > 0) { return 1; }
         return 0;
+    }
+
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if (root == null || root == p || root == q) { return root; }
+
+        TreeNode left = lowestCommonAncestor(root.left, p, q);
+        TreeNode right = lowestCommonAncestor(root.right, p, q);
+        if (left == null && right == null) { return null; }
+        if (left == null) { return right; }
+        if (right == null) { return left; }
+        return root;
     }
 }
