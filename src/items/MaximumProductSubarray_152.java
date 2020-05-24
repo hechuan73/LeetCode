@@ -24,19 +24,19 @@ public class MaximumProductSubarray_152 {
      * @return the max product of subarray
      */
     public int maxProduct(int[] nums) {
-        if (nums.length == 0) { return 0; }
-        int[] dp = new int[nums.length];
-        dp[0] = nums[0];
+        if (nums == null || nums.length == 0) { return 0; }
+
+        int res = nums[0];
+        int max = nums[0], min = nums[0];
         int[] tmp;
-        int currMax = nums[0], currMin = nums[0];
         for (int i = 1; i < nums.length; i++) {
-            tmp = new int[]{nums[i], nums[i]*currMax, nums[i]*currMin};
+            tmp = new int[]{nums[i], nums[i]*max, nums[i]*min};
             Arrays.sort(tmp);
-            dp[i] = Math.max(dp[i-1], tmp[2]);
-            currMax = tmp[2];
-            currMin = tmp[0];
+            res = Math.max(res, tmp[2]);
+            min = tmp[0];
+            max = tmp[2];
         }
 
-        return nums[nums.length-1];
+        return res;
     }
 }

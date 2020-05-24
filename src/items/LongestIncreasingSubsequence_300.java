@@ -84,4 +84,42 @@ public class LongestIncreasingSubsequence_300 {
 
         return res;
     }
+
+    /**
+     * 同第二种写法。
+     *
+     * @param nums input array
+     * @return the length of longest increasing subsequence
+     */
+    public static int lengthOfLIS(int[] nums) {
+        if (nums.length == 0) { return 0; }
+        // dp[i]表示长度为i的上升子串中结尾最小的值
+        int[] dp = new int[nums.length+1];
+        dp[1] = nums[0];
+        int left, right, mid, end = 1;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > dp[end]) {
+                dp[++end] = nums[i];
+            }
+            else {
+                left = 0;
+                right = end;
+                while (left < right) {
+                    mid = left + ((right-left) >> 1);
+                    if (dp[mid] < nums[i]) {
+                        left = mid + 1;
+                    }
+                    else {
+                        // 找到第一个比num[i]大的元素，如果相等也还需往左边找
+                        right = mid;
+                    }
+                }
+
+                dp[end] = nums[i];
+            }
+        }
+
+        // end是上升子串的长度
+        return end;
+    }
 }

@@ -14,7 +14,7 @@ public class HouseRobberII_213 {
      * @param nums input array
      * @return the maximum rob value
      */
-    public int rob(int[] nums) {
+    public int rob1(int[] nums) {
         if (nums.length == 0) { return 0; }
         if (nums.length == 1) { return nums[0]; }
         if (nums.length == 2) { return Math.max(nums[0], nums[1]); }
@@ -28,5 +28,34 @@ public class HouseRobberII_213 {
         }
 
         return Math.max(dpFromFirstHouse[nums.length-1], dpFromSecondHouse[nums.length]);
+    }
+
+    /**
+     * Optimised solution with using two variables to dp.
+     *
+     * @param nums input array
+     * @return the maximum rob value
+     */
+    public int rob2(int[] nums) {
+        if (nums.length == 0) { return 0; }
+        if (nums.length == 1) { return nums[0]; }
+        int prev1 = 0, prev2 = 0, tmp;
+
+        // start from the first room
+        for (int i = 0; i < nums.length-1; i++) {
+            tmp = prev2;
+            prev2 = Math.max(prev2, prev1+nums[i]);
+            prev1 = tmp;
+        }
+
+        int res = prev2;
+        prev1 = 0; prev2 = 0;
+        // start from the second room
+        for (int i = 1; i < nums.length; i++) {
+            tmp = prev2;
+            prev2 = Math.max(prev2, prev1+nums[i]);
+            prev1 = tmp;
+        }
+        return Math.max(res, prev2);
     }
 }
