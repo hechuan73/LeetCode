@@ -62,8 +62,11 @@ public class Dijkstra {
                 }
             }
 
+            visited[next] = true;
             for (int j = 1; j < dist.length; j++) {
-                dist[j] = Math.min(dist[j], dist[next] + map[next][j]);
+                if (i != j) {
+                    dist[j] = Math.min(dist[j], dist[next] + map[next][j]);
+                }
             }
         }
 

@@ -15,7 +15,9 @@ public class Graph {
     public Graph(int vertexNum) {
         this.vertexNum = vertexNum;
         adjList = new LinkedList[vertexNum];
-        Arrays.fill(adjList, new LinkedList<>());
+        for (int i = 0; i < vertexNum; i++) {
+            adjList[i] = new LinkedList<>();
+        }
     }
 
     public boolean addEdge(int start, int end) {
